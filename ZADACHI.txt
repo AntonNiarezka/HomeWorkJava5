@@ -1,0 +1,180 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        boolean continueExecution = true;
+
+        while (continueExecution) {
+            System.out.println("Выберите номер задачи (1-7):");
+            int taskNumber = scanner.nextInt();
+
+            switch (taskNumber) {
+                case 1:
+                    task1(scanner);
+                    break;
+                case 2:
+                    task2(scanner);
+                    break;
+                case 3:
+                    task3(scanner);
+                    break;
+                case 4:
+                    task4(scanner);
+                    break;
+                case 5:
+                    task5(scanner);
+                    break;
+                case 6:
+                    task6(scanner);
+                    break;
+                case 7:
+                    task7(scanner);
+                    break;
+                default:
+                    System.out.println("Неправильный номер задачи");
+            }
+
+            System.out.println("Хотите выполнить еще одну задачу? (yes/no)");
+            String continueChoice = scanner.next();
+            if (!continueChoice.equalsIgnoreCase("yes")) {
+                continueExecution = false;
+            }
+        }
+
+        scanner.close();
+    }
+
+    public static void task1(Scanner scanner) {
+        System.out.println("Введите число:");
+        int num = scanner.nextInt();
+        checkNumber(num);
+    }
+
+    public static void checkNumber(int num) {
+        if (num > 0) {
+            System.out.println("Число положительное");
+        } else if (num < 0) {
+            System.out.println("Число отрицательное");
+        } else {
+            System.out.println("Число равно нулю");
+        }
+    }
+
+    public static void task2(Scanner scanner) {
+        System.out.println("Введите число:");
+        int num = scanner.nextInt();
+        checkParity(num);
+    }
+
+    public static void checkParity(int num) {
+        if (num % 2 == 0) {
+            System.out.println("Число чётное");
+        } else {
+            System.out.println("Число нечётное");
+        }
+    }
+
+    public static void task3(Scanner scanner) {
+        System.out.println("Введите год:");
+        int year = scanner.nextInt();
+        boolean isLeap = isLeapYear(year);
+        System.out.println("Год високосный: " + isLeap);
+    }
+
+    public static boolean isLeapYear(int year) {
+        if (year % 4 != 0) {
+            return false;
+        } else if (year % 100 != 0) {
+            return true;
+        } else if (year % 400 != 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static void task4(Scanner scanner) {
+        System.out.println("Введите баллы студента:");
+        int score = scanner.nextInt();
+        String grade = getGrade(score);
+        System.out.println("Оценка: " + grade);
+    }
+
+    public static String getGrade(int score) {
+        if (score >= 90) {
+            return "A";
+        } else if (score >= 80) {
+            return "B";
+        } else if (score >= 70) {
+            return "C";
+        } else if (score >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
+    }
+
+    public static void task5(Scanner scanner) {
+        System.out.println("Введите месяц:");
+        scanner.nextLine();
+        String month = scanner.nextLine();
+        String season = getSeason(month);
+        System.out.println("Время года: " + season);
+    }
+
+    public static String getSeason(String month) {
+        if (month.equals("December") || month.equals("January") || month.equals("February")) {
+            return "Зима";
+        } else if (month.equals("March") || month.equals("April") || month.equals("May")) {
+            return "Весна";
+        } else if (month.equals("June") || month.equals("July") || month.equals("August")) {
+            return "Лето";
+        } else if (month.equals("September") || month.equals("October") || month.equals("November")) {
+            return "Осень";
+        } else {
+            return "Неизвестный месяц";
+        }
+    }
+
+    public static void task6(Scanner scanner) {
+        System.out.println("Введите длины сторон треугольника:");
+        double a = scanner.nextDouble();
+        double b = scanner.nextDouble();
+        double c = scanner.nextDouble();
+        String triangleType = getTriangleType(a, b, c);
+        System.out.println("Тип треугольника: " + triangleType);
+    }
+
+    public static String getTriangleType(double a, double b, double c) {
+        if (a == b && b == c) {
+            return "Равносторонний";
+        } else if (a == b || b == c || a == c) {
+            return "Равнобедренный";
+        } else {
+            return "Разносторонний";
+        }
+    }
+
+    public static void task7(Scanner scanner) {
+        System.out.println("Введите число:");
+        int num = scanner.nextInt();
+        String multipleResult = checkMultiple(num);
+        System.out.println(multipleResult);
+    }
+
+    public static String checkMultiple(int num) {
+        if (num % 3 == 0 && num % 5 == 0) {
+            return "Число кратно и 3, и 5";
+        } else if (num % 3 == 0) {
+            return "Число кратно 3";
+        } else if (num % 5 == 0) {
+            return "Число кратно 5";
+        } else {
+            return "Число не кратно ни 3, ни 5";
+        }
+    }
+}
+
